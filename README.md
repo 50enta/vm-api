@@ -84,7 +84,7 @@ PS C:\xampp\htdocs\vm-api> php artisan route:list
 PS C:\xampp\htdocs\vm-api>
 ```
 
-Finda the UI repository clicking on [this link](https://github.com/50enta/vm-api.git)
+Find the UI repository clicking on [this link](https://github.com/50enta/vm-ui.git)
 
 
 
