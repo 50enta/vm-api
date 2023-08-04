@@ -60,6 +60,29 @@ PayLoad
 ```
 
 
+## Enpoints availables
+
+```
+PS C:\xampp\htdocs\vm-api> php artisan route:list
++--------+----------+----------------------------------------+------+---------------------------------------------------------+------------+
+| Domain | Method   | URI                                    | Name | Action                                                  | Middleware |
++--------+----------+----------------------------------------+------+---------------------------------------------------------+------------+
+|        | GET|HEAD | /                                      |      | Closure                                                 | web        |
+|        | GET|HEAD | api/countries                          |      | App\Http\Controllers\CountryController@getCountriesData | api        |
+|        | GET|HEAD | api/countries/only                     |      | App\Http\Controllers\CountryController@getCountries     | api        |
+|        | GET|HEAD | api/countries/{countryCode}/pop        |      | App\Http\Controllers\CountryController@getCountries     | api        |
+|        | GET|HEAD | api/rates                              |      | App\Http\Controllers\RateController@getRates            | api        |
+|        | GET|HEAD | api/rates/convert/{amount}/{from}/{to} |      | App\Http\Controllers\RateController@convert             | api        |
+|        | POST     | api/users                              |      | App\Http\Controllers\UserController@store               | api        |
+|        | GET|HEAD | api/users                              |      | App\Http\Controllers\UserController@index               | api        |
+|        | GET|HEAD | api/users/{id}                         |      | App\Http\Controllers\UserController@show                | api        |
+|        | PUT      | api/users/{id}                         |      | App\Http\Controllers\UserController@update              | api        |
+|        | DELETE   | api/users/{id}                         |      | App\Http\Controllers\UserController@destroy             | api        |
+|        | GET|HEAD | api/weathers/test}                     |      | App\Http\Controllers\WeatherController@test             | api        |
+|        | GET|HEAD | api/weathers/{city}                    |      | App\Http\Controllers\WeatherController@getWeather       | api        |
++--------+----------+----------------------------------------+------+---------------------------------------------------------+------------+
+PS C:\xampp\htdocs\vm-api>
+```
 
 
 
