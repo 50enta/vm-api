@@ -21,17 +21,4 @@ class WeatherController extends Controller
         return response()->json($weatherData);
     }
 
-    public function test() {
-
-        $apiKey = env('WEATHER_API_KEY'); 
-
-        $client = new Client();
-
-        $endpoint = 'https://api.openweathermap.org/data/2.5/weather?q=' . $city . '&appid=' . $apiKey;
-        $response = $client->request('GET', $endpoint);
-        $weatherData = json_decode($response->getBody()->getContents(), true);
-
-        return response()->json($weatherData);
-    }
-  
 }

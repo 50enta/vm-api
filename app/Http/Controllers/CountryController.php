@@ -48,23 +48,24 @@ class CountryController extends Controller
         $countriesCollection = $this->getCountries();
         $populations = $this->getPopulationByCountryYear();
         $gdps = $this->getGdpByCountryYear();
+        $currencies = $this->getExchangeRates();
 
         foreach ($countriesCollection as $country) {
 
             $countr = $country['name'];
             $code = $country['code'];
 
+
             // var_dump($populations);
 
-            if (array_key_exists($code, $populations)) {
+            if (array_key_exists($code, $populations) && array_key_exists($code, $gdps) && array_key_exists($code, $currencies)) {
                 $countriesData[] = [
                     'code' => $code,
                     'country' => $countr,
                     'population' => $populations[$code],
                     'gdp' => $gdps[$code],
-                    'exchange' => 'USD = 65 MZN',
-                    'weather' => "max = 22, min = 12"
-                   
+                    'exchange' => $currencies[$code],
+                    // 'weather' => "max = 22, min = 12"
                 ];
             }
         }
@@ -108,5 +109,34 @@ class CountryController extends Controller
             $list[$aux] =  $key->value;
         }
         return $list;
+    }
+
+
+    public function getExchangeRates()
+    {
+
+        $client = new Client();
+        $response = $client->request('GET', 'https://restcountries.com/v3.1/all');
+
+        $data = json_decode($response->getBody(), true);
+
+        $rates = [];
+
+        foreach ($data as $country) {
+            $cca3 = $country['cca3'];
+
+            if (isset($country['currencies'])) {
+                $currency = reset($country['currencies']);
+                if (isset($currency['symbol'])) {
+                    $symbol = $currency['symbol'];
+                    $name = $currency['name'];
+                    
+                    $rates[$cca3] = $name.' - '.$symbol;
+                    
+                }
+            }
+        }
+
+        return $rates;
     }
 }

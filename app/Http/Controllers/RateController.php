@@ -13,7 +13,7 @@ class RateController extends Controller
     $apiKey = env('CURRENCY_API_KEY');
 
     $client = new Client();
-    $response = $client->request('GET', 'https://api.freecurrencyapi.com/v1/currencies', [
+    $response = $client->request('GET', 'https://api.freecurrencyapi.com/v1/currencies?per_page=200', [
       'query' => [
         'apikey' => $apiKey
       ]
@@ -49,24 +49,31 @@ class RateController extends Controller
   }
 
 
-  public function getCountries()
+  public function getExchangeRates()
   {
-      $client = new Client();
-      $response = $client->request('GET', 'http://api.worldbank.org/v2/country?format=json&per_page=300');
 
-      $data = json_decode($response->getBody())[1];
+    $client = new Client();
+    $response = $client->request('GET', 'https://restcountries.com/v3.1/all');
 
-      $countries = [];
+    $data = json_decode($response->getBody(), true);
 
-      foreach ($data as $country) {
-          if (!preg_match('/^[a-zA-Z][0-9]/', $country->iso2Code)) {
-              $countries[] = [
-                  'code' => $country->id,
-                  'name' => $country->name
-              ];
-          }
+    $rates = [];
+
+    foreach ($data as $country) {
+      $cca3 = $country['cca3'];
+
+      if (isset($country['currencies'])) {
+        $currency = reset($country['currencies']);
+        if (isset($currency['symbol'])) {
+          $symbol = $currency['symbol'];
+          $name = $currency['name'];
+
+          $rates[$cca3] = $name.' - '.$symbol;
+          
+        }
       }
+    }
 
-      return $countries;
+    return $rates;
   }
 }

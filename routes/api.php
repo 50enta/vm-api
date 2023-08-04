@@ -49,7 +49,7 @@ Route::group([
     'prefix' => 'weathers'
 ], function () {
     //weathers
-    Route::get('/test}', [WeatherController::class, 'test']);
+    Route::get('/', [WeatherController::class, 'test']);
     Route::get('/{city}', [WeatherController::class, 'getWeather']);
     
 });
@@ -58,8 +58,8 @@ Route::group([
     'prefix' => 'rates'
 ], function () {
     //rates
-    // Route::get('/', [RateController::class, 'getRates']);
     Route::get('/', [RateController::class, 'getRates']);
+    // Route::get('/', [RateController::class, 'getExchangeRates']);
     Route::get('/convert/{amount}/{from}/{to}', [RateController::class, 'convert']);
 });
 
@@ -68,7 +68,6 @@ Route::group([
 ], function () {
     //countries
     Route::get('/', [CountryController::class, 'getCountriesData']);
-    
     Route::get('/{countryCode}/pop', [CountryController::class, 'getCountries']);
     Route::get('/only', [CountryController::class, 'getCountries']);
 });
