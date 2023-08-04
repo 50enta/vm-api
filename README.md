@@ -1,5 +1,5 @@
 ## Overview
-This project was developed using Laravel. It's an API, as part of Travell Web Application. 
+This project was developed using Laravel. It's an intermmediate API, as part of Travell Web Application. 
 [Click here](https://github.com/50enta/vm-ui.git) to find the complementary part (UI).
 
 ### Requirements
