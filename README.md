@@ -36,6 +36,7 @@ save the file and execute following commands:
 ```
 composer install
 php artisan key:generate
+php artisan migrate
 php artisan passport:install
 ```
 Now your project is able to run on `http://localhost:8000` before running `php artisan serve` for development purpose.
