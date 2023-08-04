@@ -5,7 +5,7 @@ This project was developed using Laravel. It's an API, as part of Travell Web Ap
 ### Requirements
 - php 7.4
 - composer
-- DBMS Management
+- DBMS
 
 Notes
 > As we a dealing with public data APIs, I've left my api keys on .env.example file. I know isn't a best practice.
