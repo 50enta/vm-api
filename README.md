@@ -7,9 +7,6 @@ This project was developed using Laravel. It's an intermmediate API, as part of 
 - composer
 - DBMS
 
-Notes
-> As we a dealing with public data APIs, I've left my api keys on .env.example file. I know isn't a best practice.
-
 ## Project setup
 1. Clone the repository
 ```
@@ -58,6 +55,14 @@ PayLoad
     "password": "xxxxxxxx"
 }
 ```
+
+Notes
+> As we are dealing with public data APIs, I've left my api keys on .env.example file. I know isn't a best practice.
+
+## Used API's
+- https://api.freecurrencyapi.com/, https://restcountries.com/v3.1/
+- https://home.openweathermap.org/
+- http://api.worldbank.org/v2/
 
 
 ## Enpoints availables
